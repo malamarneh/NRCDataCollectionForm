@@ -607,11 +607,6 @@
     <Content Include="Global.asax" />
     <Content Include="images\nrc_logo_symbol.png" />
     <Content Include="js\main.js" />
-    <Content Include="Localization\NRCDataCollectionForm\NRCDataCollectionForm-zh-CN.xml" />
-    <Content Include="Localization\NRCDataCollectionForm\NRCDataCollectionForm.ja.xml" />
-    <Content Include="Localization\NRCDataCollectionForm\NRCDataCollectionForm.tr.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Localization\NRCDataCollectionForm\NRCDataCollectionForm.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -95,7 +95,6 @@ namespace NRCDataCollectionForm.Web
                     .Include("~/Content/themes/Plugins/Datatable/dataTables.buttons.min.js")
                     .Include("~/Content/themes/Plugins/Datatable/buttons.flash.min.js")
                     .Include("~/Content/themes/Plugins/Datatable/jszip.min.js")
-                    .Include("~/Content/themes/Plugins/Datatable/buttons.html5.min.js")
                     .Include("~/Content/themes/Plugins/Datatable/buttons.print.min.js")
                     .Include("~/Content/themes/Plugins/Datatable/pdfmake.min.js")
                     .Include("~/Content/themes/Plugins/Datatable/vfs_fonts.js")

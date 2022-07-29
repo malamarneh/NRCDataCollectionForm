@@ -1,0 +1,91 @@
+﻿@model NRCDataCollectionForm.Web.Models.Signin.SigninViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Signin</title>
+    <link href="~/Content/Signin.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row">
+        <div class="signinForm">
+            @*<div>
+                    <img src="~/images/nrc_logo_symbol.png" style="width: 100px;"/>
+                    <p> Admin Signin</p>
+                </div>
+                <div>
+                    <input type="text" placeholder="Username" />
+                </div>
+
+                <div>
+                    <input type="password" placeholder="Password" />
+                </div>
+
+                <div>
+                    <input type="submit" value="Signin" />
+                </div>*@
+
+            @using (Ajax.BeginForm("Signin", "Admin", new AjaxOptions
+            {
+                LoadingElementId = "div_Loader"
+            }, new { @class = "kt-form validation-form", @Id = "LoginForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    <img src="~/images/nrc_logo_symbol.png" style="width: 100px;" />
+                    <p> Admin Signin</p>
+                </div>
+                <div>
+                    @Html.EditorFor(model => model.Username,
+                        new
+                        {
+                            htmlAttributes = new
+                            {
+                                @class = "form-control",
+                                id = "Username",
+                                placeholder = "Username"
+                            }
+                        })
+                    <i class="ace-icon fa fa-user"></i>
+                </div>
+
+                <div>
+                    @Html.EditorFor(model => model.Password,
+                       new
+                       {
+                           htmlAttributes = new
+                           {
+                               @class = "form-control",
+                               type = "password",
+                               id = "Password",
+                               placeholder = "Password"
+                           }
+                       })
+                    <i class="ace-icon fa fa-lock"></i>
+                </div>
+
+                <div>
+
+                    <button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
+                        <i class="ace-icon fa fa-key"></i>
+                        <span class="bigger-110">Sigin</span>
+                    </button>
+                </div>
+
+
+                <div style="margin: 20px 0 0; color: red;">
+                    <span id="lblErrorMessage">
+                        @ViewBag.errMsg
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+
+</body>
+</html>

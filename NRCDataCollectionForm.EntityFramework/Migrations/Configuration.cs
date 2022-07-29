@@ -14,6 +14,9 @@ namespace NRCDataCollectionForm.Migrations
         {
             // This method will be called every time after migrating to the latest version.
             // You can add any seed data here...
+
+            context.Admins.AddOrUpdate(p => p.Name,
+                   new Models.Admin { userName = "NRCAdmin", Name = "NRC Admin", Password = "NRCAdmin@123"});
         }
     }
 }
