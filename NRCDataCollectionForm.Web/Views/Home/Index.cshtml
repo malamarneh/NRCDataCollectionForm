@@ -1,0 +1,160 @@
+﻿@using System.Threading
+@using System.Web.Optimization
+@using Abp.Timing
+@using Abp.Dependency
+@using Abp.Web.Mvc.Alerts
+@{
+    SetAntiForgeryCookie();
+    AlertList alerts = null;
+    IocManager.Instance.Using<IAlertManager>(alertManager => alerts = alertManager.Alerts);
+}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" href="~/favicon.ico">
+
+    <title>NRCDataCollectionForm</title>
+
+    @Styles.Render("~/Bundles/vendor/css")
+    @Styles.Render("~/Bundles/css")
+
+    <!-- View specific styles -->
+
+    <script type="text/javascript">
+        //This is used to get the application's root path from javascript. It's useful if you're running application in a virtual directory under IIS.
+        var abp = abp || {}; abp.appPath = '@ApplicationPath';
+    </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="@Url.Content("~/Scripts/others/html5shiv.js")"></script>
+        <script src="@Url.Content("~/Scripts/others/respond.min.js")"></script>
+    <![endif]-->
+
+    @Scripts.Render("~/Bundles/vendor/js/top")
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="~/">
+                    NRC Data Collection Form
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    @*@Html.Action("TopMenu", "Layout", new { activeMenu = ViewBag.ActiveMenu })*@
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @*@Html.Action("LanguageSelection", "Layout")*@
+                    <img src="~/images/nrc_logo_symbol.png" style="width:50px;" />
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        @if (alerts.Any())
+        {
+            <div id="AbpPageAlerts">
+                @foreach (var alertMessage in alerts)
+                {
+                    <div class="alert alert-@alertMessage.Type.ToString().ToLower() @(alertMessage.Dismissible ? "alert-dismisable" : "")" role="alert">
+                        <h4 class="alert-heading">
+                            @alertMessage.Title
+                            @if (alertMessage.Dismissible)
+                            {
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            }
+                        </h4>
+                        <p>@alertMessage.Text</p>
+                    </div>
+                }
+            </div>
+        }
+        @Scripts.Render("~/Bundles/vendor/js/bottom")
+        @Scripts.Render("~/Bundles/js")
+        <div>
+
+            <h1>@L("WelcomeMessage")!</h1>
+            <p class="lead">@L("Home_Details")</p>
+            <div ng-app="app">
+                <form id="frm_create" name="collectionCreateForm" class="form-horizontal validation-form">
+                    <div class="row" ng-controller="app.views.collectionFormCreate as vm">
+                        <div class="col-md-12 padding-10">
+                            <div class="col-md-6">@L("Name"): </div>
+
+                            <div class="col-md-6">
+                                <input type="text" placeholder="@L("Name")" class="form-control" ng-model="vm.collectionForm.name" required />
+                            </div>
+                        </div>
+                        <div class="col-md-12 padding-10">
+                            <div class="col-md-6">
+                                @L("Email"):
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" placeholder="@L("Email")" class="form-control" ng-model="vm.collectionForm.email" />
+                            </div>
+                        </div>
+                        <div class="col-md-12 padding-10">
+                            <div class="col-md-6">
+                                @L("Age"):
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" placeholder="@L("Age")" class="form-control" ng-model="vm.collectionForm.age" />
+                            </div>
+                        </div>
+                        <div class="col-md-12 padding-10">
+                            <div class="col-md-6">
+                                @L("ServicesOpinion"):
+                            </div>
+                            <div class="col-md-6">
+                                <textarea placeholder="@L("ServicesOpinion")" class="form-control" ng-model="vm.collectionForm.servicesOpinion" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 padding-10 pull-right">
+                            <button class="btn btn-info" type="submit" ng-click="vm.save('collectionCreateForm')">
+                                @L("Save")
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        abp.localization.defaultSourceName = '@LocalizationSourceName';
+        moment.locale('@Thread.CurrentThread.CurrentUICulture.Name.ToLower()'); //Localizing momentjs
+    </script>
+
+    <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+    <script src="~/api/AbpServiceProxies/GetAll?v=@(Clock.Now.Ticks)"></script>
+    <script src="~/api/AbpServiceProxies/GetAll?type=angular&v=@(Clock.Now.Ticks)"></script>
+    <script src="~/AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
+
+    <!-- View specific scripts -->
+
+    <script src="~/Content/JS/Home/Index.js"></script>
+</body>
+</html>

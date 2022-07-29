@@ -1,0 +1,19 @@
+﻿
+body {
+    background: #f58220
+}
+
+.signinForm {
+    text-align: center;
+    padding: 50px;
+    width: 50%;
+    background: #fff;
+    margin: 5% auto;
+    border-radius: 20px;
+}
+
+    .signinForm input {
+        width: 100%;
+        margin: 10px;
+        padding: 11px 0px;
+    }

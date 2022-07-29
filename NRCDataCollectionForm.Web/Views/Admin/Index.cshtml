@@ -1,0 +1,46 @@
+﻿@using System.Web.Optimization
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <link href="~/Content/themes/Plugins/Datatable/responsive.dataTables.min.css" rel="stylesheet" /
+    <h1>@L("Admin")!</h1>
+    <p class="lead">@L("Admin_Details")</p>
+    <div ng-app="app">
+        <div class="pull-right tableTools-container"></div>
+        <table id="dynamic-table" class="table table-striped table-bordered table-hover" ng-controller="app.views.collectionForm as vm">
+            <thead>
+                <tr>
+                    <th>@L("Name")</th>
+                    <th>@L("Email")</th>
+                    <th>@L("Age")</th>
+                    <th>@L("Opinion")</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="collectionForm in vm.collectionForms" my-repeat-directive>
+                    <td>{{collectionForm.name}}</td>
+                    <td>{{collectionForm.email}}</td>
+                    <td>{{collectionForm.age}}</td>
+                    <td>{{collectionForm.servicesOpinion}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@Scripts.Render("~/Bundles/DataTable")
+
+<script src="~/Content/themes/Plugins/Datatable/dataTables.buttons.min.js"></script>
+<script src="~/Content/themes/Plugins/Datatable/jszip.min.js"></script>
+<script src="~/Content/themes/Plugins/Datatable/buttons.html5.min.js"></script>
+<script src="~/Content/themes/Plugins/Datatable/dataTables.responsive.min.js"></script>
+
+@section scripts
+{
+    <script src="~/Content/JS/Admin/Index.js"></script>
+}
+

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localizationDictionary culture="en">
+  <texts>
+    <text name="HomePage" value="Collection Form" />
+    <text name="WelcomeMessage" value="Welcome to NRC Data Collection Form!" />
+    <text name="Home_Details" value="This system was developed for exam purpose to provide sample to collect data from number of individuals" />
+    <text name="Name" value="Name" />
+    <text name="Email" value="Email" />
+    <text name="Age" value="Age" />
+    <text name="ServicesOpinion" value="Share your opinion about NRC services" />
+    <text name="Save" value="Save" />
+    <text name="Admin" value="Admin" />
+    <text name="CreateCollectionForm" value="Create Collection Form" />
+    <text name="CreateSuccess" value="Collection Form has been created successfully" />
+    
+    <text name="Admin_Details" value="This page to show you the collect data from result" />
+    <text name="Opinion" value="Opinion" />
+  </texts>
+</localizationDictionary>
