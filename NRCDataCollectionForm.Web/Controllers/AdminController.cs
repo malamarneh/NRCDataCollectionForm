@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web.Mvc;
 
 namespace NRCDataCollectionForm.Web.Controllers
-{
+{//test
     public class AdminController : AbpController
     {
         private readonly IAdminAppService _adminAppService;
